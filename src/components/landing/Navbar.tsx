@@ -84,8 +84,8 @@ export function Navbar() {
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-clay/70 text-cocoa transition-colors hover:bg-sand/60 lg:hidden"
           >
-            {open ? <Menu className="h-5 w-5 hidden" /> : null}
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+
           </button>
         </div>
       </div>
