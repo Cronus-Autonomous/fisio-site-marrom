@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 33 43% 92%;
+    --foreground: 12 32% 27%;
+    --card: 30 40% 95%;
+    --card-foreground: 12 32% 27%;
+    --popover: 30 40% 95%;
+    --popover-foreground: 12 32% 27%;
+    --primary: 12 32% 27%;
+    --primary-foreground: 33 43% 92%;
+    --secondary: 20 30% 76%;
+    --secondary-foreground: 12 32% 27%;
+    --muted: 20 30% 88%;
+    --muted-foreground: 12 18% 45%;
+    --accent: 14 58% 41%;
+    --accent-foreground: 0 0% 100%;
+    --complementary: 0 50% 56%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 20 30% 80%;
+    --input: 20 30% 80%;
+    --ring: 14 58% 41%;
+    --radius: 1.25rem;
+    --font-heading: "Playfair Display", ui-serif, Georgia, serif;
+    --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Playfair Display", ui-serif, Georgia, serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-heading;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+/* Underline animado no menu */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 0;
+  background-color: hsl(var(--accent));
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-underline:hover::after,
+.nav-underline[data-active="true"]::after {
+  width: 100%;
+}
+
+/* Pulse sutil do WhatsApp flutuante */
+@keyframes wa-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.35); }
+  70% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+.wa-pulse {
+  animation: wa-pulse 2.6s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .wa-pulse { animation: none; }
+}
